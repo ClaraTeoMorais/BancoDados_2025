@@ -1,0 +1,117 @@
+-- Criação das tabelas
+
+CREATE TABLE Categoria(
+	id int identity not null,
+	descricao varchar(30) not null,
+	primary key(id)
+)
+CREATE TABLE Fabricante(
+	id int identity not null,
+	descrição varchar(30),
+	primary key (id)
+)
+CREATE TABLE Modelo(
+	id int identity not null,
+	descricao varchar(30),
+	fabricante_id int,
+	primary key (id),
+	FOREIGN KEY (fabricante_id) REFERENCES Fabricante(id)
+)
+CREATE TABLE Carro(
+	id int identity not null,
+	cor varchar(30) not null,
+	placa varchar(8) not null,
+	ano_fabricacao int not null,
+	preco numeric(10,2) not null,
+	modelo_id int not null,
+	categoria_id int not null,
+	primary key (id),
+	FOREIGN KEY (modelo_id) REFERENCES Modelo(id),
+	FOREIGN KEY (categoria_id) REFERENCES Categoria(id)
+)
+
+
+-- Inclusão dos regisros
+
+-- CATEGORIA:
+INSERT INTO Categoria(descricao) VALUES ('Hatch')
+INSERT INTO Categoria(descricao) VALUES ('Sedã')
+INSERT INTO Categoria(descricao) VALUES ('Picape')
+INSERT INTO Categoria(descricao) VALUES ('Utilitário')
+
+-- FABRICANTE:
+INSERT INTO Fabricante(descricao) VALUES ('Toyota')
+INSERT INTO Fabricante(descricao) VALUES ('Volkswagen')
+INSERT INTO Fabricante(descricao) VALUES ('Chevrolet')
+
+-- MODELO:
+-- Toyota
+INSERT INTO Modelo(descricao, fabricante_id) VALUES ('Corolla', 1)
+INSERT INTO Modelo(descricao, fabricante_id) VALUES ('Hilux', 1)
+INSERT INTO Modelo(descricao, fabricante_id) VALUES ('Yaris', 1)
+-- Volkswagen
+INSERT INTO Modelo(descricao, fabricante_id) VALUES ('Gol', 2)
+INSERT INTO Modelo(descricao, fabricante_id) VALUES ('Virtus', 2)
+INSERT INTO Modelo(descricao, fabricante_id) VALUES ('Saveiro', 2)
+-- Chevrolet
+INSERT INTO Modelo(descricao, fabricante_id) VALUES ('Onix', 3)
+INSERT INTO Modelo(descricao, fabricante_id) VALUES ('S10', 3)
+INSERT INTO Modelo(descricao, fabricante_id) VALUES ('Spin', 3)
+
+-- CARRO:
+-- Modelos Toyota
+INSERT INTO Carro(cor, placa, ano_fabricacao, preco, modelo_id, categoria_id) VALUES
+	-- Corolla
+	('Prata', 'ABC1234', 2022, 95000.00, 1, 2),
+	('Branco', 'DEF5678', 2023, 98000.00, 1, 2),
+	('Preto', 'GHI9101', 2021, 90000.00, 1, 2),
+
+	-- Hilux
+	('Preto', 'JKL1122', 2022, 180000.00, 2, 3),
+	('Branco', 'MNO3344', 2021, 175000.00, 2, 3),
+	('Vermelho', 'PQR5566', 2023, 185000.00, 2, 3),
+
+	-- Yaris
+	('Cinza', 'STU7788', 2022, 79000.00, 3, 1),
+	('Azul', 'VWX9900', 2023, 83000.00, 3, 1),
+	('Preto', 'YZA1112', 2021, 75000.00, 3, 1);
+
+-- Modelos Volkswagen
+INSERT INTO Carro(cor, placa, ano_fabricacao, preco, modelo_id, categoria_id) VALUES
+	-- Gol
+	('Branco', 'BCD2233', 2022, 70000.00, 4, 1),
+	('Cinza', 'EFG4455', 2023, 74000.00, 4, 1),
+	('Vermelho', 'HIJ6677', 2021, 68000.00, 4, 1),
+
+	-- Virtus
+	('Preto', 'KLM8899', 2022, 92000.00, 5, 2),
+	('Branco', 'NOP0011', 2023, 95000.00, 5, 2),
+	('Azul', 'QRS2233', 2021, 89000.00, 5, 2),
+
+	-- Saveiro
+	('Branco', 'TUV4455', 2022, 85000.00, 6, 3),
+	('Prata', 'WXY6677', 2023, 88000.00, 6, 3),
+	('Preto', 'ZAB8899', 2021, 81000.00, 6, 3);
+
+-- Modelos Chevrolet
+INSERT INTO Carro(cor, placa, ano_fabricacao, preco, modelo_id, categoria_id) VALUES
+	-- Onix
+	('Vermelho', 'CDE1122', 2022, 75000.00, 7, 1),
+	('Branco', 'FGH3344', 2023, 78000.00, 7, 1),
+	('Azul', 'IJK5566', 2021, 72000.00, 7, 1),
+
+	-- S10
+	('Prata', 'LMN7788', 2022, 160000.00, 8, 3),
+	('Preto', 'OPQ9900', 2023, 165000.00, 8, 3),
+	('Branco', 'RST1112', 2021, 158000.00, 8, 3),
+
+	-- Spin
+	('Cinza', 'UVW2233', 2022, 88000.00, 9, 4),
+	('Branco', 'XYZ4455', 2023, 91000.00, 9, 4),
+	('Preto', 'ABC6677', 2021, 85000.00, 9, 4);
+
+
+SELECT * FROM Categoria
+SELECT * FROM Fabricante
+SELECT * FROM Modelo
+SELECT * FROM Carro

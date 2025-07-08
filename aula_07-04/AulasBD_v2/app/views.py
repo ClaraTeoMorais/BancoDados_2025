@@ -57,3 +57,74 @@ def exercicio_1(request):
     # se ocorreu algunm erro, insere a mensagem para ser exibida no contexto da página 
     except Exception as err:
         return render(request, template, context={'ERRO': err})
+
+
+def exercicio_2(request):
+    # define a página HTML (template) que deverá será carregada
+    template = 'exercicio_2.html'
+    try:
+        # obtem a conexao com o BD
+        conexao = obter_conexao()
+
+        # define um cursor para executar comandos SQL
+        cursor = conexao.cursor()
+
+        # define o comando SQL que será executado
+        sql = '''
+            SELECT  t.nome as 'turma',
+                    a.nome, 
+                    a.idade
+
+            FROM Aluno a
+            INNER JOIN Turma t ON t.id = a.turma_id
+
+            ORDER BY t.nome, a.nome
+        '''
+        
+        # usa o cursor para executar o SQL
+        cursor.execute(sql)
+        # obtem todos os registros retornados
+        registros = cursor.fetchall()
+
+        # define a pagina a ser carregada, adicionando os registros das tabelas 
+        return render(request, template, context={'registros': registros})
+    
+    # se ocorreu algunm erro, insere a mensagem para ser exibida no contexto da página 
+    except Exception as err:
+        return render(request, template, context={'ERRO': err})
+
+
+def exercicio_3(request):
+    # define a página HTML (template) que deverá será carregada
+    template = 'exercicio_2.html'
+    try:
+        # obtem a conexao com o BD
+        conexao = obter_conexao()
+
+        # define um cursor para executar comandos SQL
+        cursor = conexao.cursor()
+
+        # define o comando SQL que será executado
+        sql = '''
+            SELECT  e.nome as 'estado',
+                    c.nome, 
+                    b.nome
+
+            FROM Cidade c
+            FROM Bairro b
+            INNER JOIN Turma t ON t.id = a.turma_id
+
+            ORDER BY t.nome, a.nome
+        '''
+        
+        # usa o cursor para executar o SQL
+        cursor.execute(sql)
+        # obtem todos os registros retornados
+        registros = cursor.fetchall()
+
+        # define a pagina a ser carregada, adicionando os registros das tabelas 
+        return render(request, template, context={'registros': registros})
+    
+    # se ocorreu algunm erro, insere a mensagem para ser exibida no contexto da página 
+    except Exception as err:
+        return render(request, template, context={'ERRO': err})
