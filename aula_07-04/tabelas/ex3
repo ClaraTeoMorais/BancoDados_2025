@@ -40,41 +40,41 @@ INSERT INTO Cidade(nome, estado_id) VALUES ('Bananeiras', 'PB')
 
 --BAIRROS:
 -- Natal:
-INSERT INTO Bairro(nome, cidade_id) VALUES ('Ponta Negra', 4)
-INSERT INTO Bairro(nome, cidade_id) VALUES ('Lagoa Nova', 4)
-INSERT INTO Bairro(nome, cidade_id) VALUES ('Alecrim', 4)
-INSERT INTO Bairro(nome, cidade_id) VALUES ('Tirol', 4)
-INSERT INTO Bairro(nome, cidade_id) VALUES ('Cidade Alta', 4)
+INSERT INTO Bairro(nome, cidade_id) VALUES ('Ponta Negra', 1)
+INSERT INTO Bairro(nome, cidade_id) VALUES ('Lagoa Nova', 1)
+INSERT INTO Bairro(nome, cidade_id) VALUES ('Alecrim', 1)
+INSERT INTO Bairro(nome, cidade_id) VALUES ('Tirol', 1)
+INSERT INTO Bairro(nome, cidade_id) VALUES ('Cidade Alta', 1)
 -- Mossoró
-INSERT INTO Bairro(nome, cidade_id) VALUES ('Centro', 5)
-INSERT INTO Bairro(nome, cidade_id) VALUES ('Nova Betânia', 5)
-INSERT INTO Bairro(nome, cidade_id) VALUES ('Alto de São Manoel', 5)
-INSERT INTO Bairro(nome, cidade_id) VALUES ('Belo Horizonte', 5)
-INSERT INTO Bairro(nome, cidade_id) VALUES ('Santo Antônio', 5)
+INSERT INTO Bairro(nome, cidade_id) VALUES ('Centro', 2)
+INSERT INTO Bairro(nome, cidade_id) VALUES ('Nova Betânia', 2)
+INSERT INTO Bairro(nome, cidade_id) VALUES ('Alto de São Manoel', 2)
+INSERT INTO Bairro(nome, cidade_id) VALUES ('Belo Horizonte', 2)
+INSERT INTO Bairro(nome, cidade_id) VALUES ('Santo Antônio', 2)
 -- Parnamirim
-INSERT INTO Bairro(nome, cidade_id) VALUES ('Cohabinal', 6)
-INSERT INTO Bairro(nome, cidade_id) VALUES ('Rosa dos Ventos', 6)
-INSERT INTO Bairro(nome, cidade_id) VALUES ('Centro', 6)
-INSERT INTO Bairro(nome, cidade_id) VALUES ('Passagem de Areia', 6)
-INSERT INTO Bairro(nome, cidade_id) VALUES ('Monte Castelo', 6)
+INSERT INTO Bairro(nome, cidade_id) VALUES ('Cohabinal', 3)
+INSERT INTO Bairro(nome, cidade_id) VALUES ('Rosa dos Ventos', 3)
+INSERT INTO Bairro(nome, cidade_id) VALUES ('Centro', 3)
+INSERT INTO Bairro(nome, cidade_id) VALUES ('Passagem de Areia', 3)
+INSERT INTO Bairro(nome, cidade_id) VALUES ('Monte Castelo', 3)
 -- João Pessoa
-INSERT INTO Bairro(nome, cidade_id) VALUES ('Tambaú', 7)
-INSERT INTO Bairro(nome, cidade_id) VALUES ('Manaíra', 7)
-INSERT INTO Bairro(nome, cidade_id) VALUES ('Bessa', 7)
-INSERT INTO Bairro(nome, cidade_id) VALUES ('Cabo Branco', 7)
-INSERT INTO Bairro(nome, cidade_id) VALUES ('Valentina', 7);
+INSERT INTO Bairro(nome, cidade_id) VALUES ('Tambaú', 4)
+INSERT INTO Bairro(nome, cidade_id) VALUES ('Manaíra', 4)
+INSERT INTO Bairro(nome, cidade_id) VALUES ('Bessa', 4)
+INSERT INTO Bairro(nome, cidade_id) VALUES ('Cabo Branco', 4)
+INSERT INTO Bairro(nome, cidade_id) VALUES ('Valentina', 4);
 -- Sousa
-INSERT INTO Bairro(nome, cidade_id) VALUES ('Gato Preto', 8);
-INSERT INTO Bairro(nome, cidade_id) VALUES ('Alto do Cruzeiro', 8);
-INSERT INTO Bairro(nome, cidade_id) VALUES ('Jardim Sorrilândia', 8);
-INSERT INTO Bairro(nome, cidade_id) VALUES ('Estação', 8);
-INSERT INTO Bairro(nome, cidade_id) VALUES ('Centro', 8);
+INSERT INTO Bairro(nome, cidade_id) VALUES ('Gato Preto', 5);
+INSERT INTO Bairro(nome, cidade_id) VALUES ('Alto do Cruzeiro', 5);
+INSERT INTO Bairro(nome, cidade_id) VALUES ('Jardim Sorrilândia', 5);
+INSERT INTO Bairro(nome, cidade_id) VALUES ('Estação', 5);
+INSERT INTO Bairro(nome, cidade_id) VALUES ('Centro', 5);
 -- Bananeiras
-INSERT INTO Bairro(nome, cidade_id) VALUES ('Centro', 9);
-INSERT INTO Bairro(nome, cidade_id) VALUES ('Roma', 9);
-INSERT INTO Bairro(nome, cidade_id) VALUES ('Tabuleiro', 9);
-INSERT INTO Bairro(nome, cidade_id) VALUES ('Matinhas', 9);
-INSERT INTO Bairro(nome, cidade_id) VALUES ('Chã de Oiti', 9);
+INSERT INTO Bairro(nome, cidade_id) VALUES ('Centro', 6);
+INSERT INTO Bairro(nome, cidade_id) VALUES ('Roma', 6);
+INSERT INTO Bairro(nome, cidade_id) VALUES ('Tabuleiro', 6);
+INSERT INTO Bairro(nome, cidade_id) VALUES ('Matinhas', 6);
+INSERT INTO Bairro(nome, cidade_id) VALUES ('Chã de Oiti', 6);
 
 
 SELECT * FROM Estado

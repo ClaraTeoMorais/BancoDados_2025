@@ -110,11 +110,9 @@ def exercicio_3(request):
                     c.nome as 'cidade', 
                     b.nome 
             
-            INNER JOIN Turma t ON t.id = a.turma_id
-
             FROM Bairro b
             INNER JOIN Cidade c ON c.id = b.cidade_id
-            INNER JOIN Etsado e ON e.id = c.estado_id
+            INNER JOIN Estado e ON e.sigla = c.estado_id
 
             ORDER BY e.nome, c.nome, b.nome
         '''
@@ -146,18 +144,18 @@ def exercicio_4(request):
         sql = '''
             SELECT  f.descricao as 'fabricante',
                     m.descricao as 'modelo', 
-                    c.descricao as 'categoria',
+                    carro.ano_fabricacao,
                     carro.cor,
                     carro.placa,
-                    carro.ano_fabricacao,
-                    carro.preco
+                    carro.preco,
+                    c.descricao as 'categoria'
 
             FROM Carro carro
             INNER JOIN Modelo m ON m.id = carro.modelo_id
-            INNER JOIN Categoria c ON m.id = c.categoria_id
+            INNER JOIN Categoria c ON c.id = m.id
             INNER JOIN Fabricante f ON f.id = m.fabricante_id
 
-            ORDER BY f.descricao, m.descricao, carro.ano_fabricacao, carro.cor, carro.placa, carro.preco, c.descricao 
+            ORDER BY f.descricao, m.descricao, carro.ano_fabricacao
         '''
         
         # usa o cursor para executar o SQL
