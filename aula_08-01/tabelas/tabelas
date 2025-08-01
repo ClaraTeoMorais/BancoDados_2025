@@ -15,7 +15,10 @@ CREATE TABLE Aluno(
 	FOREIGN KEY (turma_id) REFERENCES Turma(id) 
 )
 
+-- Inserts 
+
 INSERT INTO Turma(nome) VALUES ('Infobweb'), ('Geologia')
 
 INSERT INTO Aluno(nome, telefones, idade, data_nascimento, turma_id) VALUES 
     ('Clara Morais', '84 9999-9999', 17, '2007-12-17', 1)
+    -- falta adicionar o restante
