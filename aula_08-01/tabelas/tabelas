@@ -19,6 +19,18 @@ CREATE TABLE Aluno(
 
 INSERT INTO Turma(nome) VALUES ('Infobweb'), ('Geologia')
 
+-- alunos para a turma Infobweb 
 INSERT INTO Aluno(nome, telefones, idade, data_nascimento, turma_id) VALUES 
-    ('Clara Morais', '84 9999-9999', 17, '2007-12-17', 1)
-    -- falta adicionar o restante
+    ('Clara Morais', '84 9999-9999', 17, '2007-12-17', 1),
+    ('Lucas Andrade', '84 9888-1234', 18, '2006-05-22', 1),
+    ('Sofia Lima', '84 9877-4567', 17, '2007-09-15', 1),
+    ('Pedro Henrique', '84 9866-7890', 18, '2006-11-03', 1),
+    ('Beatriz Nunes', '84 9855-1010', 17, '2007-03-28', 1);
+
+-- alunos para a turma Geologia 
+INSERT INTO Aluno(nome, telefones, idade, data_nascimento, turma_id) VALUES 
+    ('Rafael Santos', '84 9991-2233', 19, '2005-07-12', 2),
+    ('Isabela Costa', '84 9982-3344', 18, '2006-10-25', 2),
+    ('João Victor', '84 9973-4455', 19, '2005-01-30', 2),
+    ('Mariana Alves', '84 9964-5566', 18, '2006-06-18', 2),
+    ('Gabriel Souza', '84 9955-6677', 19, '2005-09-05', 2);
