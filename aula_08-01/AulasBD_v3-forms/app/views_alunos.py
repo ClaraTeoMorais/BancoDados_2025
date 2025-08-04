@@ -52,7 +52,7 @@ SQL_EXCLUSAO = """
 #          se o seu valor deve estar entre aspas-simples ('')
 # ======================================================================== #
 SQL_INCLUSAO = """ 
-    INSERT INTO TABELA(nome, telefones, idade, data_nascimento, turma_id) 
+    INSERT INTO Aluno(nome, telefones, idade, data_nascimento, turma_id) 
     VALUES('{}', '{}', {}, '{}', {})
 """
 
@@ -87,8 +87,8 @@ class ViewCRUD (ViewGenericCRUD):
             'nome',
             'telefones',
             'idade',
-            'data_nascimento ',
-            'turma_id ',
+            'data_nascimento',
+            'turma_id',
             # 0BS-2: DEIXAR O ID POR ULTIMO
             'id',
         ]

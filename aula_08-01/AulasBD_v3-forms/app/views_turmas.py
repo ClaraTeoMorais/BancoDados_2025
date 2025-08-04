@@ -9,13 +9,13 @@ from .util_views import *
 
 # DEFINE O PREFIXO DA PÁGINA HTML (TEMPLATE) QUE DEVERÁ SERÁ CARREGADA
 #    - Exemplo: 'categorias', 'funcionarios'
-TEMPLATE_PREFIXO = 'turma'
+TEMPLATE_PREFIXO = 'turmas'
 
 
 # COMANDO SELECT GERAL PARA RETORNAR OS REGISTROS
 SQL_SELECT_GERAL = """
     SELECT  t.id,
-            t.nome,
+            t.nome
     
     FROM    Turma t
 """ 
