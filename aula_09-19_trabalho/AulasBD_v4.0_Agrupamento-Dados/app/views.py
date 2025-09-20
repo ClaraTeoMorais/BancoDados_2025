@@ -57,9 +57,55 @@ def dados_gerais(request):
         return render(request, template, context={'ERRO': err})
 
 
-# def campi_uf(request):
-#     template = 'campi_uf.html'
-#     try:
-#         conexao = obter_conexao()
-#         cursor = conexao.cursor()
-#         sql = 
+def campi_uf(request):
+    template = 'campi_uf.html'
+    try:
+        conexao = obter_conexao()
+        cursor = conexao.cursor()
+        sql = """
+                SELECT 
+                m.uf as uf,
+                COUNT(DISTINCT(c.id_campus)) as quantidade
+
+                from Campus c
+                INNER JOIN Municipio m
+                    ON m.id_municipio = c.id_municipio
+
+                group by m.uf
+                order by m.uf asc
+              """
+        count = cursor.execute(sql).fetchall()
+
+        ufs = [{'uf': uf, 'quantidade': qtd} for uf, qtd in count]
+
+        return render(request, template, {'ufs': ufs})
+    
+    except Exception as err:
+        return render(request, template, context={'ERRO': err})
+
+def ranking_municipio(request):
+    template = 'ranking_municipio.html'
+    try:
+        conexao = obter_conexao()
+        cursor = conexao.cursor()
+        sql = """
+                SELECT top (15)
+                m.nome as municipio,
+                m.uf as uf,
+                COUNT(c.id_campus) as quantidade
+
+                from Campus c
+                INNER JOIN Municipio m
+                    ON m.id_municipio = c.id_municipio
+
+                group by m.nome, m.uf
+                order by COUNT(c.id_campus) desc, m.nome asc
+              """
+        count = cursor.execute(sql).fetchall()
+
+        resultado = [{'nome': nome,'uf': uf, 'quantidade': qtd} for nome, uf, qtd in count]
+
+        return render(request, template, {'resultado': resultado})
+    
+    except Exception as err:
+        return render(request, template, context={'ERRO': err})

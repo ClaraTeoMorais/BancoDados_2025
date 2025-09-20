@@ -1,0 +1,33 @@
+{% extends "base.html" %} 
+{% load humanize %}
+
+{% block titulo_pagina %}
+    <h2>Ranking dos 15 Municípios com mais Campi</h2>
+{% endblock %} 
+
+{% block conteudo %}
+
+ <table>
+        <!-- CABECALHO DA TABELA HTML -->
+        <thead>
+            <tr>
+                <th>Posição</th>
+                <th>Município (UF)</th>
+                <th>Quantidade de Campi</th>
+            </tr>
+        </thead>
+
+        <!-- LINHAS DA TABELA HTML CONTENDO OS REGISTROS -->
+        <tbody>
+            <!-- LOOP PARA PEGAR CADA REGISTRO -->
+            {% for i in resultado %}
+                <tr>
+                    <td>{{ forloop.counter }}º</td>
+                    <td>{{ i.nome }} ({{ i.uf }})</td>
+                    <td>{{ i.quantidade|intcomma }}</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+{% endblock %}

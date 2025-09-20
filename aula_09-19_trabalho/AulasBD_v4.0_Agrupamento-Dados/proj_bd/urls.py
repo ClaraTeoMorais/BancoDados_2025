@@ -25,4 +25,6 @@ urlpatterns = [
     # define as rotas de URL da nossa aplicacao
     path('', views.home, name='home'),
     path('dados_gerais/', views.dados_gerais, name='dados_gerais'),
+    path('campi_uf/', views.campi_uf, name='campi_uf'),
+    path('ranking_municipio/', views.ranking_municipio, name='ranking_municipio'),
 ] 
