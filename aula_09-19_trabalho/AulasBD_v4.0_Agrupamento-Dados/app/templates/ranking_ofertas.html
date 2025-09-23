@@ -1,0 +1,35 @@
+{% extends "base.html" %} 
+{% load humanize %}
+
+{% block titulo_pagina %}
+    <h2>Ranking dos Cursos com mais Ofertas por UF com ENADE médio >= 2,5</h2>
+    <p>Serão exibidos um máximo de até 10 cursos por UF</p>
+{% endblock %} 
+
+{% block conteudo %}
+
+ <table>
+        <!-- CABECALHO DA TABELA HTML -->
+        <thead>
+            <tr>
+                <th>Posição</th>
+                <th>Curso</th>
+                <th>Ofertas</th>
+                <th>Enade Méd[Mín-Máx]</th>
+            </tr>
+        </thead>
+
+        <!-- LINHAS DA TABELA HTML CONTENDO OS REGISTROS -->
+        <tbody>
+            <!-- LOOP PARA PEGAR CADA REGISTRO -->
+            {% for i in resultado %}
+                <tr>
+                    <td>{{ forloop.counter }}º</td>
+                    <td>{{ i.nome }} ({{ i.uf }})</td>
+                    <td>{{ i.quantidade|intcomma }}</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+{% endblock %}

@@ -8,12 +8,12 @@
 {% block conteudo %}
 
     <div class="dashboard">
-        <div class="card">
-            {% for i in ufs %}
+        {% for i in ufs %}
+            <div class="card">
                 <h3>{{ i.uf }}</h3>
                 <p>{{ i.quantidade }}</p>
-            {% endfor %}
-        </div>
+            </div>
+        {% endfor %}
     </div>
 
 {% endblock %}

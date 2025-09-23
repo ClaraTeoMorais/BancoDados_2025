@@ -83,6 +83,29 @@ def campi_uf(request):
     except Exception as err:
         return render(request, template, context={'ERRO': err})
 
+def cursos_area(request):
+    template = 'cursos_area.html'
+    conexao = None
+    try:
+        conexao = obter_conexao()
+        cursor = conexao.cursor()
+        sql = """
+            SELECT
+                a.descricao AS area,
+                COUNT(*)    AS quantidade
+            FROM Cursos_Oferecidos_por_Campus c
+            INNER JOIN Area a
+                ON a.id_area = c.id_area
+            GROUP BY a.descricao
+            ORDER BY a.descricao
+        """
+        rows = cursor.execute(sql).fetchall()
+        cursos_area = [{'area': r[0], 'quantidade': int(r[1])} for r in rows]
+
+        return render(request, template, {'cursos_area': cursos_area})
+    except Exception as err:
+        return render(request, template, context={'ERRO': err})
+
 def ranking_municipio(request):
     template = 'ranking_municipio.html'
     try:
@@ -109,3 +132,30 @@ def ranking_municipio(request):
     
     except Exception as err:
         return render(request, template, context={'ERRO': err})
+
+# def ranking_ofertas(request):
+#     template = 'ranking_ofertas.html'
+#     try:
+#         conexao = obter_conexao()
+#         cursor = conexao.cursor()
+#         sql = """
+#                 SELECT top (15)
+#                 m.nome as municipio,
+#                 m.uf as uf,
+#                 COUNT(c.id_campus) as quantidade
+
+#                 from Campus c
+#                 INNER JOIN Municipio m
+#                     ON m.id_municipio = c.id_municipio
+
+#                 group by m.nome, m.uf
+#                 order by COUNT(c.id_campus) desc, m.nome asc
+#               """
+#         count = cursor.execute(sql).fetchall()
+
+#         resultado = [{'nome': nome,'uf': uf, 'quantidade': qtd} for nome, uf, qtd in count]
+
+#         return render(request, template, {'resultado': resultado})
+    
+#     except Exception as err:
+#         return render(request, template, context={'ERRO': err})

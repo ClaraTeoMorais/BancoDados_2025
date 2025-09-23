@@ -1,0 +1,20 @@
+{% extends "base.html" %} 
+{% load humanize %}
+
+{% block titulo_pagina %}
+    <h2>Cursos por Áreas</h2>
+{% endblock %} 
+
+{% block conteudo %}
+
+    <div class="dashboard">
+
+        {% for item in cursos_area %}
+        <div class="card">
+            <h3>{{ item.area }}</h3>
+            <p>{{ item.quantidade|intcomma }}</p>
+        </div>
+        {% endfor %}
+    </div>
+
+{% endblock %}
