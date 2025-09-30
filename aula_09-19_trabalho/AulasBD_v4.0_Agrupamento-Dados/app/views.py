@@ -133,29 +133,50 @@ def ranking_municipio(request):
     except Exception as err:
         return render(request, template, context={'ERRO': err})
 
-# def ranking_ofertas(request):
-#     template = 'ranking_ofertas.html'
-#     try:
-#         conexao = obter_conexao()
-#         cursor = conexao.cursor()
-#         sql = """
-#                 SELECT top (15)
-#                 m.nome as municipio,
-#                 m.uf as uf,
-#                 COUNT(c.id_campus) as quantidade
+def ranking_ofertas(request):
+    template = 'ranking_ofertas.html'
+    try:
+        conexao = obter_conexao()
+        cursor = conexao.cursor()
+        sql = """
+               SELECT DISTINCT(uf) as uf
+               from Municipio
+              """
+        ufs = cursor.execute(sql)
+        final = []
+        ufs = list(ufs)
 
-#                 from Campus c
-#                 INNER JOIN Municipio m
-#                     ON m.id_municipio = c.id_municipio
+        for uf in ufs:
+            sql = f"""
+                    SELECT top (10)
+                        cs.nome as curso,
+                        COUNT(*) as ofertas,
+                        AVG(coc.enade) as enade_avg,
+                        MIN(coc.enade) as enade_min,
+                        MAX(coc.enade) as enade_max
 
-#                 group by m.nome, m.uf
-#                 order by COUNT(c.id_campus) desc, m.nome asc
-#               """
-#         count = cursor.execute(sql).fetchall()
+                    from Cursos_Oferecidos_Por_Campus as coc
+                    INNER JOIN Campus cp 
+                        ON coc.id_campus = cp.id_campus
+                    
+                    INNER JOIN Municipio m
+                        ON cp.id_municipio = m.id_municipio
+                    
+                    INNER JOIN Curso cs
+                        ON coc.id_curso = cs.id_curso
 
-#         resultado = [{'nome': nome,'uf': uf, 'quantidade': qtd} for nome, uf, qtd in count]
+                    WHERE m.uf = '{uf.uf}'
+                    group by cs.nome
+                    having avg(coc.enade) >= 2.5
+                    order by count(*) desc
+                   """
 
-#         return render(request, template, {'resultado': resultado})
+            ranking = cursor.execute(sql).fetchall()
+            d = {'uf': uf.uf, 'ranking': ranking}
+
+            final.append(d)
+
+        return render(request, template, {'final': final})
     
-#     except Exception as err:
-#         return render(request, template, context={'ERRO': err})
+    except Exception as err:
+        return render(request, template, context={'ERRO': err})

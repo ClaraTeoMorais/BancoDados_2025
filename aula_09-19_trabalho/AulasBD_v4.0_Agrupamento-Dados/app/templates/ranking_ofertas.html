@@ -2,34 +2,45 @@
 {% load humanize %}
 
 {% block titulo_pagina %}
-    <h2>Ranking dos Cursos com mais Ofertas por UF com ENADE médio >= 2,5</h2>
-    <p>Serão exibidos um máximo de até 10 cursos por UF</p>
+    <h2>
+        Ranking dos Cursos com mais Ofertas por UF com ENADE médio >= 2,5 <br>
+        <span>Serão exibidos um máximo de até 10 cursos por UF</span>
+    </h2>
 {% endblock %} 
 
 {% block conteudo %}
 
- <table>
+{% for f in final %}
+    <table id="ranking_ofertas">
         <!-- CABECALHO DA TABELA HTML -->
         <thead>
+            <tr>
+                <th colspan="4" id="th_uf">{{ f.uf }}</th>
+            </tr>
             <tr>
                 <th>Posição</th>
                 <th>Curso</th>
                 <th>Ofertas</th>
-                <th>Enade Méd[Mín-Máx]</th>
+                <th>
+                    ENADE<br>
+                    <span>Méd[Mín-Máx]</span>
+                </th>
             </tr>
         </thead>
 
         <!-- LINHAS DA TABELA HTML CONTENDO OS REGISTROS -->
         <tbody>
             <!-- LOOP PARA PEGAR CADA REGISTRO -->
-            {% for i in resultado %}
+            {% for i in f.ranking %}
                 <tr>
-                    <td>{{ forloop.counter }}º</td>
-                    <td>{{ i.nome }} ({{ i.uf }})</td>
-                    <td>{{ i.quantidade|intcomma }}</td>
+                    <td id="posicao">{{ forloop.counter }}º</td>
+                    <td>{{ i.curso }}</td>
+                    <td id="ofertas">{{ i.ofertas }}</td>
+                    <td id="enade">{{ i.enade_avg|floatformat:2 }} [{{ i.enade_min|floatformat:0 }} - {{ i.enade_max|floatformat:0 }}]</td>
                 </tr>
             {% endfor %}
         </tbody>
     </table>
+{% endfor %}
 
 {% endblock %}

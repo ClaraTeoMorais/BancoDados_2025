@@ -224,3 +224,32 @@ nav ul a:hover {
     /* cor da fonte */
     color: white;
 }
+
+
+/* PÁG DE RANKING DAS OFERTAS */
+h2 span{
+    color: black;
+    font-size: 20px;
+}
+
+#ranking_ofertas{
+    width: 100%;
+    margin-bottom: 3em;
+}
+
+#th_uf{
+    color: white;
+    background-color: navy;
+}
+
+#posicao{
+    text-align: right;
+}
+
+#ofertas{
+    text-align: right;
+}
+
+#enade{
+    text-align: center;
+}
