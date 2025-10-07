@@ -1,0 +1,35 @@
+{% extends "base.html" %} 
+{% load humanize %}
+
+{% block titulo_pagina %}
+    <h2>Exercício - 3</h2>
+{% endblock %} 
+
+{% block conteudo %}
+<p>Retornar a média do ENADE agrupada por área e curso, somente para aquelas áreas e cursos com a média do ENADE >= 3.</p>
+<p>Ordenar por área e curso.</p>
+
+<table>
+    <!-- CABECALHO DA TABELA HTML -->
+    <thead>
+        <tr>
+            <th>Área</th>
+            <th>Curso</th>
+            <th>Média ENADE</th>
+        </tr>
+    </thead>
+
+    <!-- LINHAS DA TABELA HTML CONTENDO OS REGISTROS -->
+    <tbody>
+        <!-- LOOP PARA PEGAR CADA REGISTRO -->
+        {% for i in resultado %}
+            <tr>
+                <td>{{ i.area }}</td>
+                <td>{{ i.curso }}</td>
+                <td>{{ i.media_enade|floatformat:1 }}</td>
+            </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+{% endblock %}

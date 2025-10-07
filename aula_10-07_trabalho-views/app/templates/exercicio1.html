@@ -1,0 +1,31 @@
+{% extends "base.html" %} 
+{% load humanize %}
+
+{% block titulo_pagina %}
+    <h2>Exercício - 1</h2>
+{% endblock %} 
+
+{% block conteudo %}
+<p>Retornar, sem duplicação, os valores do campo UF da tabela de Municípios.</p>
+<p>Ordenar pelo nome da UF.</p>
+
+<table>
+    <!-- CABECALHO DA TABELA HTML -->
+    <thead>
+        <tr>
+            <th>Nome da UF</th>
+        </tr>
+    </thead>
+
+    <!-- LINHAS DA TABELA HTML CONTENDO OS REGISTROS -->
+    <tbody>
+        <!-- LOOP PARA PEGAR CADA REGISTRO -->
+        {% for i in resultado %}
+            <tr>
+                <td>{{ i.UF }}</td>
+            </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+{% endblock %}
