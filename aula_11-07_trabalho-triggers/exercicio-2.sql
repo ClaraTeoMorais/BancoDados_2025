@@ -43,3 +43,63 @@ as
 			rollback transaction
 			raiserror ('O MODELO não pode ser vazio', 0, 0, 0, 0, 0)
 		end
+
+	-- validar ANO FABRICAÇÃO
+	if ( @ano > year(getdate()) )
+		begin 
+			rollback transaction
+			raiserror ('O ANO DE FABRICAÇÃO não pode ser menor que o ano atual', 0, 0, 0)
+		end
+
+	-- validar se ANO contém 4 dígitos
+	if ( len(@ano) <> 4 )
+		begin 
+			rollback transaction
+			raiserror ('O ANO DE FABRICAÇÃO precisa conter 4 dígitos', 0, 0, 0)
+		end
+
+	-- validar PLACA 
+	if ( @placa not like '[A-Z][A-Z][A-Z]-[0-9][0-9][0-9][0-9]')
+		begin
+			rollback transaction
+			raiserror ('A PLACA é inválida', 0, 0, 0)
+		end
+
+	-- validar UF
+	if ( @uf not in ('AC', 'AL', 'AM', 'AP', 'BA', 'CE', 'DF', 'ES', 'GO', 'MA', 'MG', 'MS', 'MT', 'PA', 'PB', 'PE', 'PI', 'PR', 'RJ', 'RN', 'RO', 'RR', 'RS', 'SC', 'SE', 'SP', 'TO') )
+		begin
+			rollback transaction
+			raiserror ('A UF informada não é válida', 0, 0, 0)
+		end
+
+--  TESTES  --
+
+INSERT INTO Veiculo (fabricante, modelo, ano_fabricacao, placa, uf)
+VALUES ('Fiat Automóveis', 'Argo Drive 1.0', '2024', 'AAA-9999', 'RN');
+
+INSERT INTO Veiculo (fabricante, modelo, ano_fabricacao, placa, uf) -- Nome do fabricante e modelo em branco
+VALUES ('', '', '2024', 'AAA-9999', 'RN');
+
+INSERT INTO Veiculo (fabricante, modelo, ano_fabricacao, placa, uf) -- Ano de fabricação inválido
+VALUES ('Fiat Automóveis', 'Argo Drive 1.0', '2028', 'AAA-9999', 'RN');
+
+INSERT INTO Veiculo (fabricante, modelo, ano_fabricacao, placa, uf) -- Placa inválida
+VALUES ('Fiat Automóveis', 'Argo Drive 1.0', '2024', 'AAA9999', 'RN');
+
+INSERT INTO Veiculo (fabricante, modelo, ano_fabricacao, placa, uf) -- Placa inválida
+VALUES ('Fiat Automóveis', 'Argo Drive 1.0', '2024', '1119999', 'RN');
+
+INSERT INTO Veiculo (fabricante, modelo, ano_fabricacao, placa, uf) -- UF inválida
+VALUES ('Fiat Automóveis', 'Argo Drive 1.0', '2024', 'AAA-9999', 'NN');
+
+
+UPDATE Veiculo
+SET fabricante = 'Fiat carros e motos'
+WHERE id = 6;
+
+UPDATE Veiculo
+SET placa = 'AAA-8888'
+WHERE id = 6; -- Atualização da placa
+
+Select *
+FROM Veiculo

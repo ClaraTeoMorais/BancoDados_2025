@@ -37,3 +37,45 @@ as
 			rollback transaction
 			raiserror ('A DATA DE NASCIMENTO não pode ser maior que o dia atual', 0, 0, 0)
 		end
+
+	-- validar CPF
+	if ( @cpf like '%[^0-9.-]%' )
+        begin
+			rollback transaction
+			raiserror ('O CPF possui caracteres inválidos.', 0, 0, 0)
+		end
+
+	if ( @cpf not like '[0-9][0-9][0-9].[0-9][0-9][0-9].[0-9][0-9][0-9]-[0-9][0-9]' )
+		begin
+			rollback transaction
+			raiserror ('O formato do CPF é inválido.', 0, 0, 0);
+		end
+
+--  TESTES  --
+
+INSERT INTO Cliente (nome, data_nascimento, cpf)
+VALUES ('Amanda Lara', '2007-06-22', '123.456.789-00');
+
+INSERT INTO Cliente (nome, data_nascimento, cpf)
+VALUES ('   ', '2007-06-22', '123.456.789-00'); -- Nome vazio
+
+INSERT INTO Cliente (nome, data_nascimento, cpf)
+VALUES ('Clara Teodósio', '2100-12-16', '123.456.789-00'); -- Data de nascimento inválida
+
+INSERT INTO Cliente (nome, data_nascimento, cpf)
+VALUES ('Clara Teodósio', '2007-12-16', '123A456B789C00'); -- CPF inválido
+
+INSERT INTO Cliente (nome, data_nascimento, cpf)
+VALUES ('Clara Teodósio', '2007-12-16', '12345678900'); -- CPF inválido
+
+
+UPDATE Cliente
+SET nome = 'Amanda Lara Duarte da Costa'
+WHERE id = 1;
+
+UPDATE Cliente
+SET cpf = '111.111.111.111'
+WHERE id = 1; -- Atualização com CPF inválido
+
+Select *
+From Cliente 
